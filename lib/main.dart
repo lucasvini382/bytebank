@@ -47,14 +47,9 @@ class FormularioTransferencia extends StatelessWidget {
                     int.tryParse(_controladorCampoNumeroConta.text);
                 if (valor != null && numeroConta != null) {
                   final transferenciaCriada = Transferencia(valor, numeroConta);
-                  debugPrint('$transferenciaCriada');
-                  debugPrint('Valores inseridos corretamente');
                 } else if (valor == null && numeroConta == null) {
-                  debugPrint('Valor e Número da Conta é nulo');
                 } else if (valor == null) {
-                  debugPrint('Valor inserido é nulo');
                 } else if (numeroConta == null) {
-                  debugPrint('Número da conta é nulo');
                 }
               },
             ),
@@ -79,7 +74,7 @@ class Editor extends StatelessWidget {
         controller: controlador,
         style: TextStyle(fontSize: 24.0),
         decoration: InputDecoration(
-          icon: Icon(icone),
+          icon: icone != null ? Icon(icone) : null,
           labelText: rotulo,
           hintText: dica,
         ),
