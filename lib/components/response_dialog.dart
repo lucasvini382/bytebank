@@ -7,7 +7,7 @@ class ResponseDialog extends StatelessWidget {
   final IconData icon;
   final Color colorIcon;
 
-  ResponseDialog({
+  const ResponseDialog({super.key,
     this.title = "",
     this.message = "",
     required this.icon,
@@ -19,8 +19,8 @@ class ResponseDialog extends StatelessWidget {
   Widget build(BuildContext context) {
     return AlertDialog(
       title: Visibility(
-        child: Text(title),
         visible: title.isNotEmpty,
+        child: Text(title),
       ),
       content: Column(
         mainAxisSize: MainAxisSize.min,
@@ -28,6 +28,7 @@ class ResponseDialog extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.center,
         children: <Widget>[
           Visibility(
+            visible: true,
             child: Padding(
               padding: const EdgeInsets.only(top: 16.0),
               child: Icon(
@@ -36,20 +37,19 @@ class ResponseDialog extends StatelessWidget {
                 color: colorIcon,
               ),
             ),
-            visible: icon != null,
           ),
           Visibility(
+            visible: message.isNotEmpty,
             child: Padding(
               padding: const EdgeInsets.only(top: 16.0),
               child: Text(
                 message,
                 textAlign: TextAlign.center,
-                style: TextStyle(
+                style: const TextStyle(
                   fontSize: 24.0,
                 ),
               ),
             ),
-            visible: message.isNotEmpty,
           )
         ],
       ),
@@ -68,8 +68,8 @@ class SuccessDialog extends StatelessWidget {
   final String message;
   final IconData icon;
 
-  SuccessDialog(
-    this.message, {
+  const SuccessDialog(
+    this.message, {super.key,
     this.title = 'Success',
     this.icon = Icons.done,
   });
@@ -90,8 +90,8 @@ class FailureDialog extends StatelessWidget {
   final String message;
   final IconData icon;
 
-  FailureDialog(
-    this.message, {
+  const FailureDialog(
+    this.message, {super.key,
     this.title = 'Failure',
     this.icon = Icons.warning,
   });
