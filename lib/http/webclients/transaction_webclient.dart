@@ -1,12 +1,11 @@
 import 'dart:convert';
-
 import 'package:bytebank/http/webclient.dart';
 import 'package:bytebank/models/transaction.dart';
-import 'package:http/http.dart';
+import 'package:http/http.dart' as http;
 
 class TransactionWebClient {
   Future<List<Transaction>> findAll() async {
-    final Response response = await client.get(baseUrl as Uri);
+    final response = await http.get(Uri.parse(baseUrl));
     final List<dynamic> decodedJson = jsonDecode(response.body);
     return decodedJson
         .map((dynamic json) => Transaction.fromJson(json))
@@ -16,9 +15,9 @@ class TransactionWebClient {
   Future<Transaction> save(Transaction transaction, String password) async {
     final String transactionJson = jsonEncode(transaction.toJson());
 
-    await Future.delayed(Duration(seconds: 2));
+    await Future.delayed(const Duration(seconds: 2));
 
-    final Response response = await client.post(baseUrl as Uri,
+    final response = await http.post(Uri.parse(baseUrl),
         headers: {
           'Content-type': 'application/json',
           'password': password,

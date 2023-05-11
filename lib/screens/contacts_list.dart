@@ -6,29 +6,30 @@ import 'package:bytebank/screens/transaction_form.dart';
 import 'package:flutter/material.dart';
 
 class ContactsList extends StatefulWidget {
+  const ContactsList({super.key});
+
   @override
-  _ContactsListState createState() => _ContactsListState();
+  ContactsListState createState() => ContactsListState();
 }
 
-class _ContactsListState extends State<ContactsList> {
+class ContactsListState extends State<ContactsList> {
   final ContactDao _dao = ContactDao();
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Transfer'),
+        title: const Text('Transfer'),
       ),
       body: FutureBuilder<List<Contact>>(
-        initialData: [],
+        initialData: const [],
         future: _dao.findAll(),
         builder: (context, snapshot) {
           switch (snapshot.connectionState) {
             case ConnectionState.none:
               break;
             case ConnectionState.waiting:
-              return Progress();
-              break;
+              return const Progress();
             case ConnectionState.active:
               break;
             case ConnectionState.done:
@@ -49,9 +50,8 @@ class _ContactsListState extends State<ContactsList> {
                 },
                 itemCount: contacts.length,
               );
-              break;
           }
-          return Text('Unknown error');
+          return const Text('Unknown error');
         },
       ),
       floatingActionButton: FloatingActionButton(
@@ -59,12 +59,12 @@ class _ContactsListState extends State<ContactsList> {
           Navigator.of(context)
               .push(
                 MaterialPageRoute(
-                  builder: (context) => ContactForm(),
+                  builder: (context) => const ContactForm(),
                 ),
               )
               .then((value) => setState(() {}));
         },
-        child: Icon(
+        child: const Icon(
           Icons.add,
         ),
       ),
@@ -76,7 +76,7 @@ class _ContactItem extends StatelessWidget {
   final Contact contact;
   final Function onClick;
 
-  _ContactItem(
+  const _ContactItem(
     this.contact, {
     required this.onClick,
   });
@@ -88,13 +88,13 @@ class _ContactItem extends StatelessWidget {
         onTap: () => onClick(),
         title: Text(
           contact.name,
-          style: TextStyle(
+          style: const TextStyle(
             fontSize: 24.0,
           ),
         ),
         subtitle: Text(
           contact.accountNumber.toString(),
-          style: TextStyle(
+          style: const TextStyle(
             fontSize: 16.0,
           ),
         ),

@@ -7,11 +7,13 @@ import 'package:flutter/material.dart';
 class TransactionsList extends StatelessWidget {
   final TransactionWebClient _webClient = TransactionWebClient();
 
+  TransactionsList({super.key});
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Transactions'),
+        title: const Text('Transactions'),
       ),
       body: FutureBuilder<List<Transaction>>(
         future: _webClient.findAll(),
@@ -20,8 +22,7 @@ class TransactionsList extends StatelessWidget {
             case ConnectionState.none:
               break;
             case ConnectionState.waiting:
-              return Progress();
-              break;
+              return const Progress();
             case ConnectionState.active:
               break;
             case ConnectionState.done:
@@ -33,17 +34,17 @@ class TransactionsList extends StatelessWidget {
                       final Transaction transaction = transactions[index];
                       return Card(
                         child: ListTile(
-                          leading: Icon(Icons.monetization_on),
+                          leading: const Icon(Icons.monetization_on),
                           title: Text(
                             transaction.value.toString(),
-                            style: TextStyle(
+                            style: const TextStyle(
                               fontSize: 24.0,
                               fontWeight: FontWeight.bold,
                             ),
                           ),
                           subtitle: Text(
                             transaction.contact.accountNumber.toString(),
-                            style: TextStyle(
+                            style: const TextStyle(
                               fontSize: 16.0,
                             ),
                           ),
@@ -54,14 +55,13 @@ class TransactionsList extends StatelessWidget {
                   );
                 }
               }
-              return CenteredMessage(
+              return const CenteredMessage(
                 'No transactions found',
                 icon: Icons.warning,
               );
-              break;
           }
 
-          return CenteredMessage(
+          return const CenteredMessage(
             'Unknown error',
             icon: Icons.abc,
           );
