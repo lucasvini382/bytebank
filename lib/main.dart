@@ -1,4 +1,4 @@
-import 'package:bytebank/screens/name.dart';
+import 'package:bytebank/screens/dashboard.dart';
 import 'package:flutter/material.dart';
 
 void main() {
@@ -19,7 +19,7 @@ class BytebankApp extends StatelessWidget {
           textTheme: ButtonTextTheme.primary,
         ),
       ),
-      home: const NameContainer(),
+      home: const DashboardContainer(),
     );
   }
 }
