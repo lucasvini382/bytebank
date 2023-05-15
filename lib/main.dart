@@ -1,4 +1,4 @@
-import 'package:bytebank/screens/dashboard.dart';
+import 'package:bytebank/screens/name.dart';
 import 'package:flutter/material.dart';
 
 void main() {
@@ -10,6 +10,7 @@ class BytebankApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+
     return MaterialApp(
       theme: ThemeData(
         primaryColor: Colors.green[900],
@@ -18,7 +19,7 @@ class BytebankApp extends StatelessWidget {
           textTheme: ButtonTextTheme.primary,
         ),
       ),
-      home: const Dashboard(),
+      home: const NameContainer(),
     );
   }
 }
